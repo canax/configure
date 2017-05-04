@@ -22,4 +22,4 @@ require ANAX_INSTALL_PATH . "/vendor/autoload.php";
 /**
  * Include others.
  */
- require "Common/MockConfig.php";
+ require __DIR__ . "/Configure/MockConfig.php";

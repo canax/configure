@@ -58,7 +58,7 @@ class ConfigureTest extends \PHPUnit_Framework_TestCase
     /**
      * Test
      *
-     * @expectedException Anax\Common\ConfigurationException
+     * @expectedException Anax\Configure\Exception
      */
     public function testMissingConfigFile()
     {
