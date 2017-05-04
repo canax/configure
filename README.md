@@ -1,6 +1,8 @@
 Anax Configure
 ==================================
 
+[![Join the chat at https://gitter.im/canax/configure](https://badges.gitter.im/canax/configure.svg)](https://gitter.im/canax/configure?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Latest Stable Version](https://poser.pugx.org/anax/configure/v/stable)](https://packagist.org/packages/anax/configure)
 [![Join the chat at https://gitter.im/mosbth/anax](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/canax?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/canax/configure.svg?branch=master)](https://travis-ci.org/canax/configure)
