@@ -8,7 +8,7 @@ Anax Configure
 [![Build Status](https://scrutinizer-ci.com/g/canax/configure/badges/build.png?b=master)](https://scrutinizer-ci.com/g/canax/configure/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/canax/configure/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/canax/configure/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/canax/configure/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/canax/configure/?branch=master)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/986e44ce-6f86-4907-bfa9-1304bf393473/mini.png)](https://insight.sensiolabs.com/projects/986e44ce-6f86-4907-bfa9-1304bf393473)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/067df5c1-e2f6-4f2e-b479-79cfe511ae7c/mini.png)](https://insight.sensiolabs.com/projects/067df5c1-e2f6-4f2e-b479-79cfe511ae7c)
 
 To read a configure file from `config/*.php` and applying it to a module.
 
