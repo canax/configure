@@ -52,4 +52,20 @@ trait ConfigureTrait
 
         throw new Exception("Configure item '$what' is not an array nor a readable file.");
     }
+
+
+
+    /**
+     * Helper function for reading values from the configuration.
+     *
+     * @param string $key matching a key in the config array.
+     *
+     * @return mixed or null if key does not exists.
+     */
+    public function getConfig($key)
+    {
+        return isset($this->configure[$key])
+            ? $this->configure[$key]
+            : null;
+    }
 }
