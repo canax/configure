@@ -58,14 +58,15 @@ trait ConfigureTrait
     /**
      * Helper function for reading values from the configuration.
      *
-     * @param string $key matching a key in the config array.
+     * @param string $key     matching a key in the config array.
+     * @param string $default value returned when config item is not found.
      *
      * @return mixed or null if key does not exists.
      */
-    public function getConfig($key)
+    public function getConfig($key, $default = null)
     {
-        return isset($this->configure[$key])
-            ? $this->configure[$key]
-            : null;
+        return isset($this->config[$key])
+            ? $this->config[$key]
+            : $default;
     }
 }
