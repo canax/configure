@@ -50,6 +50,11 @@ trait ConfigureTrait
             }
         }
 
+        if (is_readable($what)) {
+            $this->config = require $what;
+            return $this;
+        }
+
         throw new Exception("Configure item '$what' is not an array nor a readable file.");
     }
 
