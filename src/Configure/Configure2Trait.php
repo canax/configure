@@ -44,18 +44,23 @@ trait Configure2Trait
         }
         $paths[] = $what;
 
+        $found = false;
         foreach ($paths as $path) {
             if (is_readable($path)) {
+                $found = true;
                 $this->config = require $path;
+            }
 
-                $parts = pathinfo($path);
-                $dir = $parts["dirname"] . "/" . $parts["filename"];
-                if (is_dir($dir)) {
-                    foreach (glob("$dir/*.php") as $file) {
-                        $this->config["items"][basename($file)] = require $file;
-                    }
+            $parts = pathinfo($path);
+            $dir = $parts["dirname"] . "/" . $parts["filename"];
+            if (is_dir($dir)) {
+                foreach (glob("$dir/*.php") as $file) {
+                    $found = true;
+                    $this->config["items"][basename($file)] = require $file;
                 }
+            }
 
+            if ($found) {
                 return $this;
             }
         }

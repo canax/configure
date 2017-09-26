@@ -1,6 +1,12 @@
 Revision history
 =================================
 
+v1.0.4 (2017-09-26)
+---------------------------------
+
+* Configure2Trait can read configuration from file, or directory, or both.
+
+
 v1.0.3 (2017-09-26)
 ---------------------------------
 
