@@ -1,6 +1,12 @@
 Revision history
 =================================
 
+v1.0.3 (2017-09-26)
+---------------------------------
+
+* Adding Configure2Trait that also reads details from a directory having the same name as the config file, minus the extension.
+
+
 v1.0.2 (2017-08-17)
 ---------------------------------
 

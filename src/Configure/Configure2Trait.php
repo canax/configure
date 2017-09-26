@@ -3,10 +3,10 @@
 namespace Anax\Configure;
 
 /**
- * Trait implementing reading from config-file and storing options in
- * $this->config.
+ * Trait implementing reading from config file and config directory
+ * and storing options in $this->config.
  */
-trait ConfigureTrait
+trait Configure2Trait
 {
     /**
      * @var [] $config store the configuration in this array.
@@ -34,25 +34,30 @@ trait ConfigureTrait
             return $this;
         }
 
+        $paths = [];
         if (defined("ANAX_APP_PATH")) {
-            $path = ANAX_APP_PATH . "/config/$what";
-            if (is_readable($path)) {
-                $this->config = require $path;
-                return $this;
-            }
+            $paths[] = ANAX_APP_PATH . "/config/$what";
         }
 
         if (defined("ANAX_INSTALL_PATH")) {
-            $path = ANAX_INSTALL_PATH . "/config/$what";
+            $paths[] = ANAX_INSTALL_PATH . "/config/$what";
+        }
+        $paths[] = $what;
+
+        foreach ($paths as $path) {
             if (is_readable($path)) {
                 $this->config = require $path;
+
+                $parts = pathinfo($path);
+                $dir = $parts["dirname"] . "/" . $parts["filename"];
+                if (is_dir($dir)) {
+                    foreach (glob("$dir/*.php") as $file) {
+                        $this->config["items"][basename($file)] = require $file;
+                    }
+                }
+
                 return $this;
             }
-        }
-
-        if (is_readable($what)) {
-            $this->config = require $what;
-            return $this;
         }
 
         throw new Exception("Configure item '$what' is not an array nor a readable file.");
