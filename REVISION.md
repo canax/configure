@@ -1,7 +1,7 @@
 Revision history
 =================================
 
-v1.0.* (2018-03-16)
+v1.0.5 (2018-03-16)
 ---------------------------------
 
 * When config file returns scalar value, wrap in array.
