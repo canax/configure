@@ -56,7 +56,11 @@ trait Configure2Trait
             if (is_dir($dir)) {
                 foreach (glob("$dir/*.php") as $file) {
                     $found = true;
-                    $this->config["items"][basename($file)] = require $file;
+                    $config = require $file;
+                    if (!is_array($config)) {
+                        $config = [$config];
+                    }
+                    $this->config["items"][basename($file)] = $config;
                 }
             }
 
