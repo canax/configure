@@ -2,11 +2,12 @@
 
 namespace Anax\Configure;
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Testing.
- *
  */
-class ConfigureTest extends \PHPUnit_Framework_TestCase
+class ConfigureTest extends TestCase
 {
     /**
      * Test
