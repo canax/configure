@@ -70,8 +70,8 @@ A configuration file for a module "route" is any, or a combination of the follow
 
 | File/path     | What    |
 |---------------|---------|
-| route.php     | A file. |
-| route/*.php   | Several files. |
+| `route.php`   | A file. |
+| `route/*.php` | Several files. |
 
 The files should return a value, which will be its contribution to the configuration.
 
