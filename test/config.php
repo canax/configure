@@ -17,9 +17,3 @@ define("ANAX_APP_PATH", ANAX_INSTALL_PATH);
  * Include autoloader.
  */
 require ANAX_INSTALL_PATH . "/vendor/autoload.php";
-
-
-/**
- * Include others.
- */
- require __DIR__ . "/Configure/MockConfig.php";

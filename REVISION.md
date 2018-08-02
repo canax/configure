@@ -2,6 +2,20 @@ Revision history
 =================================
 
 
+v2.0.0-alpha.2 (2018-08-02)
+---------------------------------
+
+* Add class Anax/Configure/Configuration to read configuration from files and directories. Lift this feature out from the Anax modules.
+* Remove config/error_reporting.php.
+* Add codeclimate.yml configuration file.
+* Add config/configuration.php to hold paths to base directories for the configuration.
+* Add config/di/configuration.php to setup as service in $di.
+* @deprecated src/Configure/Configure2Trait.php
+* @deprecated src/Configure/ConfigureTrait.php
+* @deprecated src/Configure/ConfigureInterface.php
+
+
+
 v2.0.0-alpha.1 (2018-08-01)
 ---------------------------------
 
