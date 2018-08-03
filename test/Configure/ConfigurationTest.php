@@ -29,9 +29,10 @@ class ConfigurationTest extends TestCase
         $config = $cfg->load("view");
 
         $this->assertInternalType("array", $config);
-        $this->assertArrayHasKey("base", $config);
+        $this->assertArrayHasKey("file", $config);
+        $this->assertArrayHasKey("config", $config);
         $this->assertArrayNotHasKey("items", $config);
-        $this->assertContains("a view", $config["base"]);
+        $this->assertContains("a view", $config["config"]);
     }
 
 
@@ -46,10 +47,11 @@ class ConfigurationTest extends TestCase
         $config = $cfg->load("response");
 
         $this->assertInternalType("array", $config);
-        $this->assertArrayNotHasKey("base", $config);
+        $this->assertArrayNotHasKey("file", $config);
+        $this->assertArrayNotHasKey("config", $config);
         $this->assertArrayHasKey("items", $config);
-        $this->assertContains("part1", $config["items"][0]);
-        $this->assertContains("part2", $config["items"][1]);
+        $this->assertContains("part1", $config["items"][0]["config"]);
+        $this->assertContains("part2", $config["items"][1]["config"]);
     }
 
 
@@ -64,10 +66,11 @@ class ConfigurationTest extends TestCase
         $config = $cfg->load("route");
 
         $this->assertInternalType("array", $config);
-        $this->assertArrayHasKey("base", $config);
-        $this->assertContains("a route", $config["base"]);
+        $this->assertArrayHasKey("file", $config);
+        $this->assertArrayHasKey("config", $config);
+        $this->assertContains("a route", $config["config"]);
         $this->assertArrayHasKey("items", $config);
-        $this->assertContains("a 404 route", $config["items"][0]);
-        $this->assertContains("an internal route", $config["items"][1]);
+        $this->assertContains("a 404 route", $config["items"][0]["config"]);
+        $this->assertContains("an internal route", $config["items"][1]["config"]);
     }
 }

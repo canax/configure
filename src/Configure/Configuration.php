@@ -57,11 +57,18 @@ class Configuration
      * values from each individual configuration file, like this.
      *
      * $config = [
-     *      "base" => configuration returned from file.php,
+     *      "file" => filename for file.php,
+     *      "config" => result returned from file.php,
      *      "items" => [
-     *          "file1.php" => configuration returned from dir/file1.php,
-     *          "file2.php" => configuration returned from dir/file2.php,
-     *      ]
+     *          [
+     *              "file" => filename for dir/file1.php,
+     *              "config" => result returned from dir/file1.php,
+     *          ],
+     *          [
+     *              "file" => filename for dir/file2.php,
+     *              "config" => result returned from dir/file2.php,
+     *          ],
+     *      ].
      * ]
      *
      * The configuration files in the directory are loaded per alphabetical
@@ -90,7 +97,8 @@ class Configuration
             // The configuration is found in a file
             if (is_readable($file) && is_file($file)) {
                 $found = true;
-                $config["base"] = require $file;
+                $config["file"] = $file;
+                $config["config"] = require $file;
             }
 
             // The configuration is found in a directory
@@ -118,9 +126,16 @@ class Configuration
 
     /**
      * Read configuration a directory, loop through all files and add
-     * them into the $config array as [
-     *      loaded configuration from dir/file1.php,
-     *      loaded configuration from dir/file2.php,
+     * them into the $config array as:
+     * [
+     *      [
+     *          "file" => filename for dir/file1.php,
+     *          "config" => result returned from dir/file1.php,
+     *      ],
+     *      [
+     *          "file" => filename for dir/file2.php,
+     *          "config" => result returned from dir/file2.php,
+     *      ],
      * ].
      *
      * @param string $path is the path to the directory containing config files.
@@ -131,8 +146,10 @@ class Configuration
     {
         $config = [];
         foreach (glob("$path/*.php") as $file) {
-            $config[] = require $file;
-            $config["filename"] = $file;
+            $config[] = [
+                "file" => $file,
+                "config" => require $file,
+            ];
         }
 
         return $config;
