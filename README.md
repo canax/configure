@@ -22,6 +22,16 @@ The configuration files for a module can be stored in one of several base direct
 The configuration items can be stored in a file, and/or in a directory containing several files. All files are loaded and combined into one array containing each bits and piece of the module configuration.
 
 
+
+Install
+------------------
+
+```bash
+$ composer require anax/configure
+```
+
+
+
 Related classes
 ------------------
 
