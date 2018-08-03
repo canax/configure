@@ -119,8 +119,8 @@ class Configuration
     /**
      * Read configuration a directory, loop through all files and add
      * them into the $config array as [
-     *      "file1.php" => loaded configuration from dir/file1.php,
-     *      "file2.php" => loaded configuration from dir/file2.php,
+     *      loaded configuration from dir/file1.php,
+     *      loaded configuration from dir/file2.php,
      * ].
      *
      * @param string $path is the path to the directory containing config files.
@@ -131,7 +131,7 @@ class Configuration
     {
         $config = [];
         foreach (glob("$path/*.php") as $file) {
-            $config[basename($file)] = require $file;
+            $config[] = require $file;
         }
 
         return $config;

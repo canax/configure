@@ -48,8 +48,8 @@ class ConfigurationTest extends TestCase
         $this->assertInternalType("array", $config);
         $this->assertArrayNotHasKey("base", $config);
         $this->assertArrayHasKey("items", $config);
-        $this->assertContains("part1", $config["items"]["part1.php"]);
-        $this->assertContains("part2", $config["items"]["part2.php"]);
+        $this->assertContains("part1", $config["items"][0]);
+        $this->assertContains("part2", $config["items"][1]);
     }
 
 
@@ -67,7 +67,7 @@ class ConfigurationTest extends TestCase
         $this->assertArrayHasKey("base", $config);
         $this->assertContains("a route", $config["base"]);
         $this->assertArrayHasKey("items", $config);
-        $this->assertContains("a 404 route", $config["items"]["404.php"]);
-        $this->assertContains("an internal route", $config["items"]["internal.php"]);
+        $this->assertContains("a 404 route", $config["items"][0]);
+        $this->assertContains("an internal route", $config["items"][1]);
     }
 }

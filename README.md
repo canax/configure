@@ -96,8 +96,8 @@ The resulting configuration array looks like this, still using "route" as exampl
 $config = [
     "base" => configuration returned from route.php,
     "items" => [
-        "file1.php" => configuration returned from route/file1.php,
-        "file2.php" => configuration returned from route/file2.php,
+        configuration returned from route/file1.php,
+        configuration returned from route/file2.php,
     ]
 ];
 ```
