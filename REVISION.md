@@ -2,6 +2,13 @@ Revision history
 =================================
 
 
+v2.0.0-alpha.* (2018-08-03)
+---------------------------------
+
+* Add filename to each loaded configuration file, to ease debugging.
+
+
+
 v2.0.0-alpha.4 (2018-08-03)
 ---------------------------------
 

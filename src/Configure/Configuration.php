@@ -132,6 +132,7 @@ class Configuration
         $config = [];
         foreach (glob("$path/*.php") as $file) {
             $config[] = require $file;
+            $config["filename"] = $file;
         }
 
         return $config;
