@@ -2,6 +2,14 @@ Revision history
 =================================
 
 
+v2.0.0-alpha.3 (2018-08-03)
+---------------------------------
+
+* In composer.json require anax/commons.
+* Add dependency section in README.
+
+
+
 v2.0.0-alpha.2 (2018-08-02)
 ---------------------------------
 

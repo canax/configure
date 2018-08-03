@@ -96,6 +96,17 @@ Tha "route" module can then decide on how to use the actual configuration detail
 
 
 
+Dependency
+------------------
+
+These are the dependencies to other modules.
+
+| Module         | What    |
+|----------------|---------|
+| `anax/commons` | Using `t()` for i18n. |
+
+
+
 License
 ------------------
 
