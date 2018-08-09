@@ -122,6 +122,14 @@ class Configuration
             $path = "$dir/$item";
             $file = "$path.php";
 
+            // The configuration is found in ONLY a file
+            if (is_readable($path) && is_file($path)) {
+                $found = true;
+                $config["file"] = $path;
+                $config["config"] = require $path;
+                break;
+            }
+
             // The configuration is found in a file
             if (is_readable($file) && is_file($file)) {
                 $found = true;
