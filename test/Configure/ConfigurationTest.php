@@ -73,4 +73,23 @@ class ConfigurationTest extends TestCase
         $this->assertContains("a 404 route", $config["items"][0]["config"]);
         $this->assertContains("an internal route", $config["items"][1]["config"]);
     }
+
+
+
+    /**
+     * Use mapping to load specific file for a configuration item.
+     */
+    public function testUseMapping()
+    {
+        $cfg = new Configuration();
+        $cfg->setBaseDirectories($this->dirs);
+        $cfg->setMapping("item", ANAX_INSTALL_PATH . "/test/config/test1.php");
+        $config = $cfg->load("item");
+
+        $this->assertInternalType("array", $config);
+        $this->assertArrayHasKey("file", $config);
+        $this->assertArrayHasKey("config", $config);
+        $this->assertArrayHasKey("key1", $config["config"]);
+        $this->assertContains("value1", $config["config"]);
+    }
 }

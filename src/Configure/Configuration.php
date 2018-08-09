@@ -10,9 +10,33 @@ namespace Anax\Configure;
 class Configuration
 {
     /**
-     * @var [] $dirs where to look for configuration items.
+     * @var array $dirs where to look for configuration items.
      */
     protected $dirs = [];
+
+
+
+    /**
+     * @var array $mapping mapping items to specific configuration file, mainly
+     *                     useful for testing various configuration files.
+     */
+    protected $mapping = [];
+
+
+
+    /**
+     * Set a specific configuration file to load for a particluar item.
+     *
+     * @param string $item the item to map.
+     * @param string $file file to load configuration from.
+     *
+     * @return self to allow chaining.
+     */
+    public function setMapping(string $item, string $file) : object
+    {
+        $this->mapping[$item] = $file;
+        return $this;
+    }
 
 
 
@@ -29,15 +53,12 @@ class Configuration
     public function setBaseDirectories(array $dirs): object
     {
         if (empty($dirs)) {
-            throw new Exception(t("The array for configuration directories can not be empty."));
+            throw new Exception("The array for configuration directories can not be empty.");
         }
 
         foreach ($dirs as $dir) {
             if (!(is_readable($dir) && is_dir($dir))) {
-                throw new Exception(t(
-                    "The configuration dir '@dir' is not a valid path.",
-                    ["@dir" => $dir]
-                ));
+                throw new Exception("The configuration dir '$dir' is not a valid path.");
             }
         }
 
@@ -77,19 +98,26 @@ class Configuration
      * @param string $item is a name representing the module and is used to
      *                     combine the path to search for.
      *
-     * @return mixed with returned value from the loaded configuration.
-     *
      * @throws Exception when configuration item can not be found.
      * @throws Exception when $dirs are empty.
+     *
+     * @return array with returned value from the loaded configuration.
      */
-    public function load(string $item): array
+    public function load(string $item) : array
     {
         if (empty($this->dirs)) {
-            throw new Exception(t("The array for configuration directories can not be empty."));
+            throw new Exception("The array for configuration directories can not be empty.");
         }
 
         $found = false;
         $config = [];
+        $mapping = $this->mapping[$item] ?? null;
+        if ($mapping) {
+            $config["file"] = $mapping;
+            $config["config"] = require $mapping;
+            return $config;
+        }
+
         foreach ($this->dirs as $dir) {
             $path = "$dir/$item";
             $file = "$path.php";
@@ -113,10 +141,7 @@ class Configuration
         }
 
         if (!$found) {
-            throw new Exception(t(
-                "Configure item '@item' can not be found.",
-                ["@item" => $item]
-            ));
+            throw new Exception("Configure item '$item' can not be found.");
         }
 
         return $config;

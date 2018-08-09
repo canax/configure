@@ -2,7 +2,14 @@ Revision history
 =================================
 
 
-v2.0.0-alpha.* (2018-08-03)
+v2.0.0-alpha.6 (2018-08-08)
+---------------------------------
+
+* Add setMapping() to ease test to map specific file to an item.
+
+
+
+v2.0.0-alpha.5 (2018-08-03)
 ---------------------------------
 
 * Add filename to each loaded configuration file, to ease debugging.
