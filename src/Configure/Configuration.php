@@ -10,6 +10,14 @@ namespace Anax\Configure;
 class Configuration
 {
     /**
+     * @var array $config to save the latest loaded config to ease
+     *                    access.
+     */
+    protected $config = [];
+
+
+
+    /**
      * @var array $dirs where to look for configuration items.
      */
     protected $dirs = [];
@@ -52,10 +60,6 @@ class Configuration
      */
     public function setBaseDirectories(array $dirs): object
     {
-        if (empty($dirs)) {
-            throw new Exception("The array for configuration directories can not be empty.");
-        }
-
         foreach ($dirs as $dir) {
             if (!(is_readable($dir) && is_dir($dir))) {
                 throw new Exception("The configuration dir '$dir' is not a valid path.");
@@ -105,30 +109,30 @@ class Configuration
      */
     public function load(string $item) : array
     {
-        if (empty($this->dirs)) {
-            throw new Exception("The array for configuration directories can not be empty.");
-        }
-
         $found = false;
         $config = [];
+        $this->config = $config;
+
         $mapping = $this->mapping[$item] ?? null;
         if ($mapping) {
             $config["file"] = $mapping;
             $config["config"] = require $mapping;
+            $this->config = $config;
+            return $config;
+        }
+
+        // The configuration is found by absolute path
+        if (is_readable($item) && is_file($item)) {
+            $found = true;
+            $config["file"] = $item;
+            $config["config"] = require $item;
+            $this->config = $config;
             return $config;
         }
 
         foreach ($this->dirs as $dir) {
             $path = "$dir/$item";
             $file = "$path.php";
-
-            // The configuration is found in ONLY a file
-            if (is_readable($path) && is_file($path)) {
-                $found = true;
-                $config["file"] = $path;
-                $config["config"] = require $path;
-                break;
-            }
 
             // The configuration is found in a file
             if (is_readable($file) && is_file($file)) {
@@ -152,6 +156,7 @@ class Configuration
             throw new Exception("Configure item '$item' can not be found.");
         }
 
+        $this->config = $config;
         return $config;
     }
 
@@ -186,5 +191,24 @@ class Configuration
         }
 
         return $config;
+    }
+
+
+
+    /**
+     * Helper function for reading values from the configuration and apply
+     * default values where configuration item is missing. This
+     * helper only works when there are single configuration files,
+     * it does not work when multiple configuration files are loaded
+     * from a directory.
+     *
+     * @param string $key     matching a key in the config array.
+     * @param string $default value returned when config item is not found.
+     *
+     * @return mixed or null if key does not exists.
+     */
+    public function getConfig($key, $default = null)
+    {
+        return $this->config["config"][$key] ?? $default;
     }
 }

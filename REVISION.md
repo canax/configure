@@ -2,6 +2,17 @@ Revision history
 =================================
 
 
+v2.0.0 (2020-11-19)
+---------------------------------
+
+* Rewrite how the configuration files are loaded.
+* Allow empty base dirs.
+* Add to save the latest loaded configuration.
+* Add method getConfig($key, $default).
+* Add phpstan badge.
+
+
+
 v2.0.0-beta.1 (2018-08-15)
 ---------------------------------
 

@@ -20,6 +20,69 @@ class ConfigurationTest extends TestCase
 
 
     /**
+     * Allow no base dirs being defined.
+     */
+    public function testNoBaseDirsAreDefined()
+    {
+        $cfg = new Configuration();
+        $res = $cfg->load(__DIR__ . "/../config/test1.php");
+        $this->assertIsArray($res);
+    }
+
+
+
+    /**
+     * Throw exception when setting base dirs to an empty array.
+     */
+    public function testSetBaseDirsAsEmptyArray()
+    {
+        $cfg = new Configuration();
+        $cfg->setBaseDirectories([]);
+        $res = $cfg->load(__DIR__ . "/../config/test1.php");
+        $this->assertIsArray($res);
+    }
+
+
+
+    /**
+     * Read config file by absolute path.
+     */
+    public function testReadConfigFileByAbsolutePath()
+    {
+        $cfg = new Configuration();
+        $res = $cfg->load(__DIR__ . "/../config/test1.php");
+        $this->assertIsArray($res);
+
+        $exp = "value1";
+        $res = $cfg->getConfig("key1");
+        $this->assertEquals($exp, $res);
+
+        $exp = "value2";
+        $res = $cfg->getConfig("NO KEY", "value2");
+        $this->assertEquals($exp, $res);
+    }
+
+
+
+    /**
+     * Load configuration from file with absolute path.
+     */
+    public function testConfigFromAbsolutePath()
+    {
+        $cfg = new Configuration();
+        //$cfg->setBaseDirectories($this->dirs);
+        $config = $cfg->load(__DIR__ . "/../config1/view.php");
+
+        $this->assertInternalType("array", $config);
+        $this->assertArrayHasKey("file", $config);
+        $this->assertArrayHasKey("config", $config);
+        $this->assertArrayNotHasKey("items", $config);
+        $this->assertContains("a view", $config["config"]);
+    }
+
+
+
+    /**
      * Load configuration from file alone.
      */
     public function testConfigFromSingleFile()

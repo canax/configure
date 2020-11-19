@@ -34,32 +34,6 @@ class ConfigurationFailTest extends TestCase
 
 
     /**
-     * Throw exception when no base dirs are defined.
-     *
-     * @expectedException Exception
-     */
-    public function testNoBaseDirsAreDefined()
-    {
-        $cfg = new Configuration();
-        $cfg->load("view");
-    }
-
-
-
-    /**
-     * Throw exception when setting base dirs to an empty array.
-     *
-     * @expectedException Exception
-     */
-    public function testSetBaseDirsAsEmptyArray()
-    {
-        $cfg = new Configuration();
-        $cfg->setBaseDirectories([]);
-    }
-
-
-
-    /**
      * Throw exception when path to base dir is wrong.
      *
      * @expectedException Exception
