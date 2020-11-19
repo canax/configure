@@ -11,7 +11,7 @@ Anax Configure
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/canax/configure/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/canax/configure/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/canax/configure/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/canax/configure/?branch=master)
 
-[!https://img.shields.io/badge/PHPStan-level%200-brightgreen.svg?style=flat]
+![PHPStan](https://img.shields.io/badge/PHPStan-level%200-brightgreen.svg?style=flat)
 [![Maintainability](https://api.codeclimate.com/v1/badges/cda1f1d88d8c7f4aea49/maintainability)](https://codeclimate.com/github/canax/configure/maintainability)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/79d0eab0f627424da588b4b39cfc9f17)](https://www.codacy.com/app/mosbth/configure?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=canax/configure&amp;utm_campaign=Badge_Grade)
 
