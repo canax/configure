@@ -1,6 +1,13 @@
 Revision history
 =================================
 
+@TODO
+
+* Remove old interface and traits.
+* Create new trait/interface for model-classes reading their own configuration file.
+* Rewrite README and document on anax website.
+
+
 
 v2.0.0 (2020-11-19)
 ---------------------------------
