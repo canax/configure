@@ -101,6 +101,24 @@ class ConfigurationTest extends TestCase
 
 
     /**
+     * Load configuration from file with extension.
+     */
+    public function testConfigFromSingleFileWithExtension()
+    {
+        $cfg = new Configuration();
+        $cfg->setBaseDirectories($this->dirs);
+        $config = $cfg->load("view.php");
+
+        $this->assertInternalType("array", $config);
+        $this->assertArrayHasKey("file", $config);
+        $this->assertArrayHasKey("config", $config);
+        $this->assertArrayNotHasKey("items", $config);
+        $this->assertContains("a view", $config["config"]);
+    }
+
+
+
+    /**
      * Load configuration from directory alone.
      */
     public function testConfigFromDirectory()

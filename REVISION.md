@@ -9,6 +9,13 @@ Revision history
 
 
 
+v2.0.1 (2020-11-19)
+---------------------------------
+
+* Fix support for loading configfiles like 'view.php' with extension.
+
+
+
 v2.0.0 (2020-11-19)
 ---------------------------------
 

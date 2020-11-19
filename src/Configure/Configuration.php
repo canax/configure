@@ -139,6 +139,10 @@ class Configuration
                 $found = true;
                 $config["file"] = $file;
                 $config["config"] = require $file;
+            } elseif (is_readable($path) && is_file($path)) {
+                $found = true;
+                $config["file"] = $path;
+                $config["config"] = require $path;
             }
 
             // The configuration is found in a directory
